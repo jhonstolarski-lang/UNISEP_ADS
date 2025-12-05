@@ -1,32 +1,32 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import Login from "./screens/login"
-import Perfil from "./screens/perfil";
-import Disciplinas from "./screens/Disciplinas";
-
-const Stack = createNativeStackNavigator();
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [valor, setvalor] = useState(0); 
+
+  function add() {
+    setvalor((prevValor) => prevValor + 1); 
+  }
+
+  function rmv() {
+    setvalor((prevValor) => prevValor - 1); 
+  }
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="perfil">
-        <Stack.Screen
-          name="login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="perfil"
-          component={Perfil}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="disciplinas"
-          component={Disciplinas}
-          options={{ title: 'Minhas Disciplinas' }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+    <View style={styles.container}>
+      <Text>{valor}</Text>
+      <Text>BOLSONARO2025</Text>
+      <Button title="Adicionar" onPress={add} />
+      <Button title="Remover" onPress={rmv} />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0a9a00ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
